@@ -1,4 +1,4 @@
-# Spreadsheet Lookup App (Streamlit)
+# Veseris Replacement Bulb Cross Reference Lookup
 
 This is a small web app that turns an Excel spreadsheet into a searchable, filterable lookup tool.
 
