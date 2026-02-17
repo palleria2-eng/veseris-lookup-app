@@ -8,8 +8,8 @@ import streamlit as st
 
 st.set_page_config(page_title="Spreadsheet Lookup", layout="wide")
 
-st.title("Spreadsheet Lookup App")
-st.caption("Search and filter the spreadsheet, then export results.")
+st.title("Veseris Lamp Cross Reference Lookup")
+st.caption("Type Brand, Model or bulb type to search")
 
 @st.cache_data(show_spinner=False)
 def load_xlsx(file_bytes: bytes, sheet_name=None) -> pd.DataFrame:
@@ -70,7 +70,7 @@ left, right = st.columns([2, 1])
 
 with left:
     st.subheader("Search")
-    q = st.text_input("Search across all columns", value="")
+    q = st.text_input("Type Brand, Model or bulb type to search", value="")
     st.caption("Example: 'F15T5BL', 'Gardner', 'Genus', 'shatterproof'")
 
 with right:
