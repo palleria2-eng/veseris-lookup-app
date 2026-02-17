@@ -131,10 +131,3 @@ st.dataframe(filtered[shown_cols], use_container_width=True, height=520)
 
 csv = filtered[shown_cols].to_csv(index=False).encode("utf-8")
 st.download_button("Download filtered results (CSV)", data=csv, file_name="filtered_results.csv", mime="text/csv")
-
-st.markdown("### Quick lookup")
-st.caption("Pick a row and see key values (useful on mobile).")
-if len(filtered) > 0:
-    idx = st.selectbox("Row", options=list(filtered.index))
-    row = filtered.loc[idx]
-    st.json({k: (None if pd.isna(v) else v) for k, v in row.to_dict().items()})
