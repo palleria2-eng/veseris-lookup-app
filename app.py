@@ -35,22 +35,26 @@ def clean_df(df: pd.DataFrame) -> pd.DataFrame:
         df["Case Quantity"] = pd.to_numeric(df["Case Quantity"], errors="coerce")
     return df
 
-with st.sidebar:
-    st.header("Data source")
-    uploaded = st.file_uploader("Upload an .xlsx file", type=["xlsx"])
-    st.markdown("—")
-    demo_path = st.text_input("Or load from local path (optional)", value="")
-    st.caption("Tip: in Streamlit Cloud, leave this blank and upload the file.")
+import os
+
+DEFAULT_FILE = "data.xlsx"  # put this file in the same folder as app.py
 
 file_bytes = None
-if uploaded is not None:
-    file_bytes = uploaded.getvalue()
-elif demo_path:
-    try:
-        with open(demo_path, "rb") as f:
-            file_bytes = f.read()
-    except Exception as e:
-        st.error(f"Could not read demo file: {e}")
+
+# 1) Auto-load fixed file if present
+if os.path.exists(DEFAULT_FILE):
+    with open(DEFAULT_FILE, "rb") as f:
+        file_bytes = f.read()
+
+# 2) Otherwise fall back to uploader
+with st.sidebar:
+    st.header("Data source")
+    if file_bytes is None:
+        uploaded = st.file_uploader("Upload an .xlsx file", type=["xlsx"])
+        if uploaded is not None:
+            file_bytes = uploaded.getvalue()
+    else:
+        st.success(f"Loaded default file: {DEFAULT_FILE}")
 
 if file_bytes is None:
     st.info("Upload an .xlsx file to get started.")
