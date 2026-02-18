@@ -1,24 +1,25 @@
-# Veseris Replacement Bulb Cross Reference Lookup
+# Veseris UV Insect Lamp Finder
 
-This is a small web app that turns an Excel spreadsheet into a searchable, filterable lookup tool.
+A simple web-based cross-reference tool for UV lamps used in flying insect traps.  
+It helps pest control professionals find the correct replacement lamp (type, code, and Veseris stock numbers) by selecting brand and model.
+
+Built with **Streamlit** — reads data directly from `data.xlsx`.
 
 ## Features
-- Upload an `.xlsx` file (or point to a local path)
-- Search across all columns
-- Filter by common columns if present (Brand / Model / Lamp Type / Lamp Code)
-- Choose which columns to display
-- Download filtered results as CSV
-- Quick row detail view
+- Select brand → model
+- Shows lamp type, code, case quantity
+- Displays Veseris stock codes for **regular** and **shatterproof** versions
+- Handles "N/A" entries gracefully
+- Fully local/offline-capable once running
 
-## Run locally
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-2. Start the app:
-   ```bash
-   streamlit run app.py
-   ```
+## Data Source
+- Loaded from `data.xlsx` (Sheet1)
+- Columns expected: Brand, Model, Lamp Type, Lamp Code, Veseris Stock Code (Regular) - Case, etc.
+- Data accurate as of February 2026 (update the Excel as needed)
 
-## Notes
-- The app works with any spreadsheet, but it provides extra filters when it detects the common columns above.
+## How to Run Locally
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
+   cd YOUR-REPO-NAME
